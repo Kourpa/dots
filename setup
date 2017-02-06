@@ -1,0 +1,8 @@
+#!/bin/bash
+mkdir tmp
+cd tmp
+wget http://www.deviantart.com/download/342067457/delorean_dark_theme_3_6_g__vs_2_56_by_killhellokitty-d5nnoxt.zip?token=24457d710d309afcbaf3f323f3778b864be1b0b7&ts=1464106873
+unzip delorean_dark_theme_3_6_h__vs_2_56_by_killhellokitty-d5nnoxt.zip /usr/share/themes/.
+pacaur paper-icon-theme-git
+cd ..
+rm -rf ./tmp
