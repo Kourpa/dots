@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/kourpa/git/aseprite/build/CMakeFiles'
+let g:netrw_dirhist_3='/home/kourpa/git/mandelbrot'
+let g:netrw_dirhist_2='/home/kourpa/git/mandelbrot/web'
+let g:netrw_dirhist_1='/home/kourpa/git/mandelbrot'
+let g:netrw_dirhist_0='/home/kourpa/git/mandelbrot/web'
+let g:netrw_dirhist_9='/home/kourpa/git/mandelbrot'
+let g:netrw_dirhist_8='/home/kourpa/git/mandelbrot/web'
+let g:netrw_dirhist_7='/home/kourpa/git/mandelbrot'
+let g:netrw_dirhist_6='/home/kourpa/git/mandelbrot/web'
+let g:netrw_dirhist_5='/home/kourpa/git/mandelbrot'
