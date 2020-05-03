@@ -66,6 +66,10 @@
 
 
 URxvt.scrollBar:false
-URxvt.font:xft:Linconsolata:size=9
+URxvt.font:             xft:Linconsolata:pixelsize=10:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=10:antialias=true,hinting=true
+URxvt.boldFont:         xft:Linconsolata:pixelsize=10:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=10:antialias=true,hinting=true
+URxvt.italicFont:       xft:Linconsolata:pixelsize=10:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=10:antialias=true,hinting=true
+URxvt.bolditalicFont:   xft:Linconsolata:pixelsize=10:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=10:antialias=true,hinting=true
+
 URxvt.letterSpace: -3.75
 
