@@ -1,8 +1,13 @@
 call plug#begin()
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-fugitive'
-	Plug 'tomasr/molokai'
-	Plug 'jiangmiao/auto-pairs'
+	Plug 'sickill/vim-monokai'
+	Plug 'chrisbra/Colorizer'
+	Plug 'yuttie/comfortable-motion.vim'
+	Plug 'gabrielelana/vim-markdown'
+
+	Plug 'elzr/vim-json'
+		let g:vim_json_syntax_conceal = 0
 
 	Plug 'dense-analysis/ale'
 		let g:ale_linters = { 'go': ['gopls'], }
@@ -35,11 +40,13 @@ set relativenumber
 set title
 set splitbelow
 set splitright
+set noswapfile
 
+
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
 
 filetype plugin indent on
 
-colorscheme molokai
 
-
-
+colorscheme monokai
