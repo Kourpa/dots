@@ -1,7 +1,7 @@
 call plug#begin()
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-fugitive'
-	Plug 'sickill/vim-monokai'
+	Plug 'dracula/vim', { 'as': 'dracula' }
 	Plug 'chrisbra/Colorizer'
 	Plug 'yuttie/comfortable-motion.vim'
 	Plug 'gabrielelana/vim-markdown'
@@ -48,5 +48,4 @@ autocmd InsertLeave * set nocul
 
 filetype plugin indent on
 
-
-colorscheme monokai
+colorscheme "dracula"
