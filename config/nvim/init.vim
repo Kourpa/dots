@@ -4,13 +4,15 @@ call plug#begin()
 	Plug 'dracula/vim', { 'as': 'dracula' }
 	Plug 'chrisbra/Colorizer'
 	Plug 'yuttie/comfortable-motion.vim'
-	Plug 'gabrielelana/vim-markdown'
+	"Plug 'gabrielelana/vim-markdown'
 
 	Plug 'elzr/vim-json'
 		let g:vim_json_syntax_conceal = 0
 
 	Plug 'dense-analysis/ale'
-		let g:ale_linters = { 'go': ['gopls'], }
+		let g:ale_linters = { 
+					\ 'go': ['gopls'], 
+					\ }
 
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
