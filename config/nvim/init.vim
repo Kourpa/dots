@@ -11,8 +11,9 @@ call plug#begin()
 
 	Plug 'dense-analysis/ale'
 		let g:ale_linters = { 
-					\ 'go': ['gopls'], 
-					\ }
+			\ 'go': ['gopls'], 
+			\ 'javascript': ['tsserver', 'eslint'],
+			\ }
 
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
