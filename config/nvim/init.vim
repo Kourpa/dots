@@ -1,7 +1,7 @@
 call plug#begin()
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-fugitive'
-	Plug 'dracula/vim', { 'as': 'dracula' }
+	Plug 'morhetz/gruvbox'
 	Plug 'chrisbra/Colorizer'
 
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -77,5 +77,6 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 filetype plugin indent on
 
-colorscheme "dracula"
+let g:gruvbox_contrast_dark='medium'
+colorscheme gruvbox
 highlight Pmenu ctermbg=234 ctermfg=253
