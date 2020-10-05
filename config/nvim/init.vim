@@ -1,8 +1,10 @@
 call plug#begin()
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-fugitive'
-	Plug 'morhetz/gruvbox'
+	Plug 'morhetz/gruvbox',
 	Plug 'chrisbra/Colorizer'
+    Plug 'vim-test/vim-test'
+    Plug 'christoomey/vim-tmux-navigator'
 
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -48,6 +50,22 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<TAB>'
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -60,6 +78,7 @@ syntax enable
 set nu
 set tabstop=4
 set shiftwidth=4
+set expandtab
 set autoread
 set autowrite
 set relativenumber
@@ -67,16 +86,27 @@ set title
 set splitbelow
 set splitright
 set noswapfile
+set splitbelow
+set splitright
+set mouse=a
 
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-H> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-J> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-K> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+set diffopt+=vertical
 
 filetype plugin indent on
 
 let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
-highlight Pmenu ctermbg=234 ctermfg=253
+" highlight Pmenu ctermbg=234 ctermfg=253
