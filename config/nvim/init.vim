@@ -10,7 +10,7 @@ call plug#begin()
 
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
-	nnoremap <c-p> :FZF<cr>
+	nnoremap <space>p :FZF<cr>
 
 	Plug 'airblade/vim-gitgutter'
 		autocmd BufWritePost * GitGutter
@@ -19,8 +19,6 @@ call plug#begin()
 		if executable('ag')
 		  let g:ackprg = 'ag --vimgrep'
 		endif
-
-	Plug 'preservim/nerdtree'	
 call plug#end()
 
 " Use <c-space> to trigger completion.
@@ -81,7 +79,6 @@ set shiftwidth=4
 set expandtab
 set autoread
 set autowrite
-set relativenumber
 set title
 set splitbelow
 set splitright
@@ -89,6 +86,10 @@ set noswapfile
 set splitbelow
 set splitright
 set mouse=a
+set undofile
+set clipboard=unnamedplus
+
+nnoremap <space>l :ls<CR>:b<space>
 
 let g:tmux_navigator_no_mappings = 1
 
@@ -102,7 +103,7 @@ autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+nmap <space>e :CocCommand explorer<CR>
 set diffopt+=vertical
 
 filetype plugin indent on
@@ -110,3 +111,5 @@ filetype plugin indent on
 let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
 " highlight Pmenu ctermbg=234 ctermfg=253
+"
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer']
