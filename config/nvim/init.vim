@@ -1,7 +1,9 @@
 call plug#begin()
+	Plug 'morhetz/gruvbox',
+    "Plug 'dracula/vim', { 'as': 'dracula' }
+
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-fugitive'
-	Plug 'morhetz/gruvbox',
 	Plug 'chrisbra/Colorizer'
     Plug 'vim-test/vim-test'
     Plug 'christoomey/vim-tmux-navigator'
@@ -10,7 +12,6 @@ call plug#begin()
 
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
-	nnoremap <space>p :FZF<cr>
 
 	Plug 'airblade/vim-gitgutter'
 		autocmd BufWritePost * GitGutter
@@ -23,7 +24,6 @@ call plug#end()
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-nnoremap <c-i> :CocFix<cr>
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -62,6 +62,10 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Symbol renaming.
+nmap <F2> <Plug>(coc-rename)
+nmap <F6> :TestNearest<CR>
+
 let g:coc_snippet_next = '<TAB>'
 
 function! s:show_documentation()
@@ -85,11 +89,15 @@ set splitright
 set noswapfile
 set splitbelow
 set splitright
+set secure
 set mouse=a
 set undofile
 set clipboard=unnamedplus
 
 nnoremap <space>l :ls<CR>:b<space>
+nnoremap <space>e :CocCommand explorer --toggle<CR>
+nnoremap <space>f :Ag<cr>
+nnoremap <space>p :GFiles<cr>
 
 let g:tmux_navigator_no_mappings = 1
 
@@ -112,4 +120,4 @@ let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
 " highlight Pmenu ctermbg=234 ctermfg=253
 "
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-explorer']
+let g:coc_global_extensions = ['coc-json', 'coc-explorer']
