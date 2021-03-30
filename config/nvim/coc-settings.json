@@ -12,6 +12,7 @@
   ],
   "eslint.filetypes": [
     "javascript",
+    "javascript.jsx",
     "typescript",
     "typescriptreact",
     "javascriptreact",
@@ -19,5 +20,9 @@
   ],
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
-  "diagnostic.infoSign": "•"
+  "diagnostic.infoSign": "•",
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascript", "javascriptreact", "jsx"],
+  "explorer.icon.enableNerdfont": true,
+  "explorer.width": 32,
+  "gofumpt": true,
 }

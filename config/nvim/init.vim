@@ -15,11 +15,6 @@ call plug#begin()
 
 	Plug 'airblade/vim-gitgutter'
 		autocmd BufWritePost * GitGutter
-
-	Plug 'mileszs/ack.vim'
-		if executable('ag')
-		  let g:ackprg = 'ag --vimgrep'
-		endif
 call plug#end()
 
 " Use <c-space> to trigger completion.
