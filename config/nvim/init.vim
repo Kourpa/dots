@@ -10,7 +10,7 @@ call plug#begin()
 
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-	Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 
 	Plug 'airblade/vim-gitgutter'
@@ -19,6 +19,7 @@ call plug#end()
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+nnoremap <c-i> :CocFix<cr>
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
