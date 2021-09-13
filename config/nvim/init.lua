@@ -1,0 +1,6 @@
+require('plugins')
+require('plugins/treesitter')
+require('plugins/tmuxnavigate')
+require('plugins/telescope')
+require('mappings')
+require('settings')
