@@ -11,6 +11,7 @@ global.secure = true
 global.mouse = 'a'
 global.clipboard = 'unnamedplus'
 global.hidden = true
+global.diffopt = 'vertical,filler,context:3,indent-heuristic,algorithm:patience,internal'
 
 buffer.syntax = 'enable'
 vim.cmd [[
@@ -24,6 +25,25 @@ vim.cmd [[
     set undofile
     set noswapfile
     set exrc
+
+    set grepprg=ag\ --vimgrep
+
+    function! Grep(...)
+        return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+    endfunction
+
+    command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+    command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+
+    cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
+    cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
+
+    augroup quickfix
+        autocmd!
+        autocmd QuickFixCmdPost cgetexpr cwindow
+        autocmd QuickFixCmdPost lgetexpr lwindow
+    augroup END
+    
 ]]
 
 buffer.undofile = true
@@ -31,6 +51,7 @@ buffer.swapfile = false
 global.secure = true
 
 window.number = true
+window.cursorline = true
 
 vim.cmd('filetype plugin indent on')
 
