@@ -8,29 +8,30 @@ local paq = require "paq" {
 	'vim-test/vim-test';
 
 	'kabouzeid/nvim-lspinstall';
-    --THEMES
+	--THEMES
 	--'catppuccin/nvim';
 	--'morhetz/gruvbox';
 	--'sainnhe/sonokai';
 	--{'dracula/vim', as = 'dracula' };
 	--{'projekt0n/github-nvim-theme'};
 	--'arcticicestudio/nord-vim';
-    "jacoborus/tender.vim";
-    -----------------------------------------------------------
+	"jacoborus/tender.vim";
+	-----------------------------------------------------------
 	'Famiu/feline.nvim';
-    
+
 	'tpope/vim-fugitive';
 	'nvim-lua/plenary.nvim';
 	'lewis6991/gitsigns.nvim';
 
 	'tpope/vim-surround';
-    'windwp/nvim-autopairs';
+	'windwp/nvim-autopairs';
 
 	'nvim-telescope/telescope.nvim';
 	'chrisbra/Colorizer';
 	'christoomey/vim-tmux-navigator';
 
-	{'iamcco/markdown-preview.nvim', run='cd app && yarn install'};
+
+	"ellisonleao/glow.nvim";
 	{'prettier/vim-prettier', run='npm install'};
 	{'nvim-treesitter/nvim-treesitter', run='TSUpdate'};
 }
@@ -40,8 +41,8 @@ vim.cmd('PaqSync')
 
 
 vim.cmd [[
-  set termguicolors
-  colorscheme tender
+set termguicolors
+colorscheme tender
 ]]
 
 --vim.cmd [[
