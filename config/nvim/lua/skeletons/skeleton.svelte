@@ -1,0 +1,7 @@
+<script lang='ts'>
+</script>
+
+<div>Component</div>
+
+<style>
+</style>
