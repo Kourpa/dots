@@ -3,21 +3,35 @@ vim.cmd 'packadd paq-nvim'
 local paq = require "paq" {
 	{'savq/paq-nvim',opt=true};
 	'neovim/nvim-lspconfig';
-	'hrsh7th/nvim-compe';
+    'jose-elias-alvarez/null-ls.nvim';
+
+	'hrsh7th/cmp-nvim-lsp';
+	'hrsh7th/cmp-buffer';
+	'hrsh7th/cmp-path';
+	'hrsh7th/cmp-cmdline';
+	'hrsh7th/nvim-cmp';
+
+	'hrsh7th/cmp-vsnip';
 	'hrsh7th/vim-vsnip';
+
 	'vim-test/vim-test';
 
-	'kabouzeid/nvim-lspinstall';
-	--THEMES
+	'williamboman/nvim-lsp-installer';
+    {'lsp_lines', url="https://git.sr.ht/~whynothugo/lsp_lines.nvim"};
+	---- THEMES -----------------------------------------------
 	--'catppuccin/nvim';
 	--'morhetz/gruvbox';
 	--'sainnhe/sonokai';
 	--{'dracula/vim', as = 'dracula' };
 	--{'projekt0n/github-nvim-theme'};
 	--'arcticicestudio/nord-vim';
-	"jacoborus/tender.vim";
+	--"jacoborus/tender.vim";
+    --'Mofiqul/vscode.nvim';
+    --"rakr/vim-one";
+    --"joshdick/onedark.vim";
+    "Domeee/mosel.nvim";
 	-----------------------------------------------------------
-	'Famiu/feline.nvim';
+	'feline-nvim/feline.nvim';
 
 	'tpope/vim-fugitive';
 	'nvim-lua/plenary.nvim';
@@ -29,11 +43,15 @@ local paq = require "paq" {
 	'nvim-telescope/telescope.nvim';
 	'chrisbra/Colorizer';
 	'christoomey/vim-tmux-navigator';
+    --'knubie/vim-kitty-navigator';
 
 
 	"ellisonleao/glow.nvim";
 	{'prettier/vim-prettier', run='npm install'};
 	{'nvim-treesitter/nvim-treesitter', run='TSUpdate'};
+
+    'kyazdani42/nvim-web-devicons';
+    --'kyazdani42/nvim-tree.lua';
 }
 
 vim.cmd('PaqSync')
@@ -42,7 +60,7 @@ vim.cmd('PaqSync')
 
 vim.cmd [[
 set termguicolors
-colorscheme tender
+colorscheme mosel
 ]]
 
 --vim.cmd [[
