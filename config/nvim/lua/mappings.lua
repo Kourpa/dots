@@ -5,10 +5,10 @@ options = { noremap = true }
 
 map('n', '<space>p', '', {
     noremap = true,
-    callback = function() 
-      local opts = {} -- define here if you want to define something
-      local ok = pcall(require"telescope.builtin".git_files, opts)
-      if not ok then require"telescope.builtin".find_files(opts) end
+    callback = function()
+        local opts = {} -- define here if you want to define something
+        local ok = pcall(require "telescope.builtin".git_files, opts)
+        if not ok then require "telescope.builtin".find_files(opts) end
     end,
 })
 
@@ -23,7 +23,7 @@ map('n', '<space>c', ':Gitsigns preview_hunk<CR>', options)
 map('n', '<space>u', ':Gitsigns reset_hunk<CR>', options)
 map('n', '[c', ':Gitsigns prev_hunk<CR>', options)
 map('n', ']c', ':Gitsigns next_hunk<CR>', options)
-map('n', '<space>tt', ':Telescope live_grep<CR>- \\[ \\]', options)
+map('n', '<space>tt', ':lua require("telescope.builtin").grep_string({search = "- [ ]"})<CR>', options)
 
 map('v', 'K', ":m '<-2<CR>gv=gv", {})
 map('v', 'J', ":m '>+1<CR>gv=gv", {})

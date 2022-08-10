@@ -1,14 +1,15 @@
 local ok, _ = pcall(require, 'lspconfig')
-if ok then 
+if ok then
     -- keymaps
     local on_attach = function(client, bufnr)
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
         local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
         buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
         -- Mappings.
-        local opts = { noremap=true, silent=true }
+        local opts = { noremap = true, silent = true }
         --buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
         buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -33,7 +34,7 @@ if ok then
          autocmd! * <buffer>
          autocmd BufWritePre <buffer> LspFormatting
          augroup END
-         ]], true)
+         ]]  , true)
         end
 
         -- Set some keybinds conditional on server capabilities
@@ -51,11 +52,11 @@ if ok then
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
-        ]], false)
+        ]]   , false)
         end
     end
 
-    require("nvim-lsp-installer").setup {}
+    require("mason").setup {}
     local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 
@@ -69,47 +70,48 @@ if ok then
         on_attach = on_attach
     })
 
-    local nvim_lsp = require'lspconfig'
-    nvim_lsp.tsserver.setup{on_attach = function(client, bufnr)
+    local nvim_lsp = require 'lspconfig'
+    nvim_lsp.tsserver.setup { on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
         client.resolved_capabilities.document_range_formatting = false
         on_attach(client, bufnr)
-    end, capabilities = capabilities}
+    end, capabilities = capabilities }
 
-    nvim_lsp.gopls.setup{on_attach = on_attach, capabilities = capabilities}
-    nvim_lsp.pylsp.setup{on_attach = on_attach, capabilities = capabilities}
+    nvim_lsp.gopls.setup { on_attach = on_attach, capabilities = capabilities }
+    nvim_lsp.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
+    nvim_lsp.sumneko_lua.setup { on_attach = on_attach, capabilities = capabilities }
 
-    nvim_lsp.jdtls.setup{
-        on_attach = on_attach, 
-        capabilities = capabilities, 
+    nvim_lsp.jdtls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
         root_dir = nvim_lsp.util.root_pattern(".git", "pom.xml"),
     }
 
-    nvim_lsp.svelte.setup{on_attach = function(client, bufnr)
+    nvim_lsp.svelte.setup { on_attach = function(client, bufnr)
         on_attach(client, bufnr)
-    end, capabilities = capabilities}
+    end, capabilities = capabilities }
 
-    nvim_lsp.tailwindcss.setup{on_attach = function(client, bufnr)
+    nvim_lsp.tailwindcss.setup { on_attach = function(client, bufnr)
         on_attach(client, bufnr)
-    end, capabilities = capabilities}
+    end, capabilities = capabilities }
 
-    nvim_lsp.graphql.setup{on_attach = function(client, bufnr)
+    nvim_lsp.graphql.setup { on_attach = function(client, bufnr)
         on_attach(client, bufnr)
-    end, capabilities = capabilities}
+    end, capabilities = capabilities }
 end
 
 local ok, _ = pcall(require, 'cmp')
-if ok then 
+if ok then
     local has_words_before = function()
-      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
     end
 
     local feedkey = function(key, mode)
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
     end
 
-    local cmp = require'cmp'
+    local cmp = require 'cmp'
     -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
     cmp.setup {
         snippet = {
@@ -118,30 +120,30 @@ if ok then
             end,
         },
         mapping = cmp.mapping.preset.insert({
-              --['<Shift-k>'] = cmp.mapping.scroll_docs(-4),
-              --['<C-k>'] = cmp.mapping.scroll_docs(4),
-              --['<Esc>'] = cmp.mapping.abort(),
-              ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-              ["<Tab>"] = cmp.mapping(function(fallback)
-                   if cmp.visible() then
-                     cmp.select_next_item()
-                   elseif vim.fn["vsnip#available"](1) == 1 then
-                     feedkey("<Plug>(vsnip-expand-or-jump)", "")
-                   elseif has_words_before() then
-                     cmp.complete()
-                   else
-                     fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-                   end
-                 end, { "i", "s" }),
-
-              ["<S-Tab>"] = cmp.mapping(function()
+            --['<Shift-k>'] = cmp.mapping.scroll_docs(-4),
+            --['<C-k>'] = cmp.mapping.scroll_docs(4),
+            --['<Esc>'] = cmp.mapping.abort(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            ["<Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
-                  cmp.select_prev_item()
-                elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-                  feedkey("<Plug>(vsnip-jump-prev)", "")
+                    cmp.select_next_item()
+                elseif vim.fn["vsnip#available"](1) == 1 then
+                    feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                elseif has_words_before() then
+                    cmp.complete()
+                else
+                    fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
                 end
-              end, { "i", "s" }),
-            }),
+            end, { "i", "s" }),
+
+            ["<S-Tab>"] = cmp.mapping(function()
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+                    feedkey("<Plug>(vsnip-jump-prev)", "")
+                end
+            end, { "i", "s" }),
+        }),
         enabled = true,
         autocomplete = true,
         debug = false,
@@ -152,10 +154,10 @@ if ok then
         incomplete_delay = 400,
         allow_prefix_unmatch = false,
         sources = cmp.config.sources({
-            { name = 'nvim_lsp'},
-            { name = 'vsnip'},
-            { name = 'buffer'},
-            { name = 'path'},
+            { name = 'nvim_lsp' },
+            { name = 'vsnip' },
+            { name = 'buffer' },
+            { name = 'path' },
         }),
     }
 end
@@ -165,9 +167,6 @@ vim.diagnostic.config({
         source = 'always',
         border = border
     },
-    virtual_text = false
+    virtual_text = false,
+    open_float = true
 })
-
-vim.diagnostic.open_float()
-
-require("lsp_lines").setup()

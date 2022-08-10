@@ -16,8 +16,7 @@ local paq = require "paq" {
 
 	'vim-test/vim-test';
 
-	'williamboman/nvim-lsp-installer';
-    {'lsp_lines', url="https://git.sr.ht/~whynothugo/lsp_lines.nvim"};
+	'williamboman/mason.nvim';
 	---- THEMES -----------------------------------------------
 	--'catppuccin/nvim';
 	--'morhetz/gruvbox';
