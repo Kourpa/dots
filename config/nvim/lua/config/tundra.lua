@@ -2,6 +2,10 @@ local ok, _ = pcall(require, 'nvim-tundra')
 if ok then
     require('nvim-tundra').setup({
         transparent_background = false,
+        dim_inactive_windows = {
+            enabled = false,
+            color = nil,
+        },
         editor = {
             search = {},
             substitute = {},
@@ -11,6 +15,7 @@ if ok then
             comments = { bold = true, italic = true },
             conditionals = {},
             constants = { bold = true },
+            fields = {},
             functions = {},
             keywords = {},
             loops = {},
@@ -29,6 +34,7 @@ if ok then
         plugins = {
             lsp = true,
             treesitter = true,
+            nvimtree = true,
             cmp = true,
             context = true,
             dbui = true,

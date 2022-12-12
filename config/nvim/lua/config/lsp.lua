@@ -119,7 +119,7 @@ if ok then
     end
 
     require("mason").setup {}
-    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 
     local null_ls = require("null-ls")
@@ -162,12 +162,35 @@ if ok then
     end, capabilities = capabilities }
 end
 
-
+-- borders!
 vim.diagnostic.config({
     float = {
         source = 'always',
-        border = border
     },
     virtual_text = false,
-    open_float = true
 })
+
+-- Show line diagnostics automatically in hover window
+--vim.o.updatetime = 250
+--vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float({scr}, {focus=false})]]
+
+local _border = "single"
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+    border = _border
+}
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+    border = _border
+}
+)
+
+vim.diagnostic.config {
+    float = { border = _border }
+}
+
+require("lspconfig.ui.windows").default_options = {
+    border = _border
+}
