@@ -4,6 +4,8 @@ local paq = require "paq" {
     { 'savq/paq-nvim', opt = true };
     'neovim/nvim-lspconfig';
     'jose-elias-alvarez/null-ls.nvim';
+    'williamboman/mason.nvim';
+    'williamboman/mason-lspconfig.nvim';
 
     'hrsh7th/cmp-nvim-lsp';
     'hrsh7th/cmp-buffer';
@@ -16,7 +18,6 @@ local paq = require "paq" {
 
     'vim-test/vim-test';
 
-    'williamboman/mason.nvim';
     ---- THEMES -----------------------------------------------
     --'catppuccin/nvim';
     --'morhetz/gruvbox';
@@ -35,14 +36,16 @@ local paq = require "paq" {
     'feline-nvim/feline.nvim';
 
     'tpope/vim-fugitive';
-    'nvim-lua/plenary.nvim';
     'lewis6991/gitsigns.nvim';
 
     'tpope/vim-surround';
     'windwp/nvim-autopairs';
     'windwp/nvim-ts-autotag';
 
+    'nvim-lua/plenary.nvim';
     'nvim-telescope/telescope.nvim';
+    'nvim-telescope/telescope-ui-select.nvim';
+
     'chrisbra/Colorizer';
     'christoomey/vim-tmux-navigator';
     --'knubie/vim-kitty-navigator';
@@ -50,13 +53,14 @@ local paq = require "paq" {
 
     "ellisonleao/glow.nvim";
     { 'prettier/vim-prettier', run = 'npm install' };
-    { 'nvim-treesitter/nvim-treesitter', run = 'TSUpdate' };
+    { 'nvim-treesitter/nvim-treesitter' };
+    { 'nvim-treesitter/nvim-treesitter-context' };
 
     'kyazdani42/nvim-web-devicons';
     --'kyazdani42/nvim-tree.lua';
 }
 
-vim.cmd('PaqSync')
+-- vim.cmd('PaqSync')
 --vim.cmd('PaqUpdate')
 
 
