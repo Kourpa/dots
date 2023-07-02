@@ -1,0 +1,271 @@
+<svg fill="none" viewBox="0 0 830 200" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+	<foreignObject width="100%" height="100%">
+		<div xmlns="http://www.w3.org/1999/xhtml">
+			<style>
+                .wrapper {
+                    --color1: #282828;
+                    --color1: #cc241d;
+                    --color2: #98971a;
+                    --color3: #d79921;
+                    --color4: #458588;
+                    --color5: #b16286;
+                    --color6: #689d64;
+                    --color7: #a89984;
+                    --accent0: #928374;
+                    --accent1: #fb4934;
+                    --accent2: #b8bb26;
+                    --accent3: #fabd2f;
+                    --accent4: #83a598;
+                    --accent5: #d3869b;
+                    --accent6: #8ec07c;
+                    --accent7: #ebdbb2;
+
+                    --color0-text: "#282828";
+                    --color1-text: "#cc241d";
+                    --color2-text: "#98971a";
+                    --color3-text: "#d79921";
+                    --color4-text: "#458588";
+                    --color5-text: "#b16286";
+                    --color6-text: "#689d64";
+                    --color7-text: "#a89984";
+                    --accent0-text: "#928374";
+                    --accent1-text: "#fb4934";
+                    --accent2-text: "#b8bb26";
+                    --accent3-text: "#fabd2f";
+                    --accent4-text: "#83a598";
+                    --accent5-text: "#d3869b";
+                    --accent6-text: "#8ec07c";
+                    --accent7-text: "#ebdbb2";
+                }
+
+                .palette {
+                    width: 100%;
+                    height: 200px;
+                    display: grid;
+                    grid-template-columns: repeat(8, 1fr);
+                    grid-template-rows: 1fr 1fr;
+                }
+
+                .palette > * {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0.5ch 0;
+                }
+
+                .palette > *::after {
+                    text-transform: uppercase;
+                    font-size: 12px;
+                }
+
+                .name {
+                    font-size: 20px;
+                }
+
+                .index {
+                    font-size: 10px;
+                    width: 100%;
+                    text-align: end;
+                    padding-right: 2ch;
+                }
+
+                .bg-color0 {
+                    background-color: var(--color0);
+                    color: var(--accent7);
+                }
+                .bg-color0::after {
+                    content: var(--color0-text);
+                }
+
+                .bg-color1 {
+                    background-color: var(--color1);
+                    color: var(--accent7);
+                }
+                .bg-color1::after {
+                    content: var(--color1-text);
+                }
+
+                .bg-color2 {
+                    background-color: var(--color2);
+                    color: var(--accent7);
+                }
+                .bg-color2::after {
+                    content: var(--color2-text);
+                }
+
+                .bg-color3 {
+                    background-color: var(--color3);
+                    color: var(--accent7);
+                }
+                .bg-color3::after {
+                    content: var(--color3-text);
+                }
+
+                .bg-color4 {
+                    background-color: var(--color4);
+                    color: var(--accent7);
+                }
+                .bg-color4::after {
+                    content: var(--color4-text);
+                }
+
+                .bg-color5 {
+                    background-color: var(--color5);
+                    color: var(--accent7);
+                }
+                .bg-color5::after {
+                    content: var(--color5-text);
+                }
+
+                .bg-color6 {
+                    background-color: var(--color6);
+                    color: var(--accent7);
+                }
+                .bg-color6::after {
+                    content: var(--color6-text);
+                }
+
+                .bg-color7 {
+                    background-color: var(--color7);
+                    color: var(--accent7);
+                }
+                .bg-color7::after {
+                    content: var(--color7-text);
+                }
+
+                .bg-accent0 {
+                    background-color: var(--accent0);
+                    color: var(--color0);
+                }
+                .bg-accent0::after {
+                    content: var(--accent0-text);
+                }
+
+                .bg-accent1 {
+                    background-color: var(--accent1);
+                    color: var(--color0);
+                }
+                .bg-accent1::after {
+                    content: var(--accent1-text);
+                }
+
+                .bg-accent2 {
+                    background-color: var(--accent2);
+                    color: var(--color0);
+                }
+                .bg-accent2::after {
+                    content: var(--accent2-text);
+                }
+
+                .bg-accent3 {
+                    background-color: var(--accent3);
+                    color: var(--color0);
+                }
+                .bg-accent3::after {
+                    content: var(--accent3-text);
+                }
+
+                .bg-accent4 {
+                    background-color: var(--accent4);
+                    color: var(--color0);
+                }
+                .bg-accent4::after {
+                    content: var(--accent4-text);
+                }
+
+                .bg-accent5 {
+                    background-color: var(--accent5);
+                    color: var(--color0);
+                }
+                .bg-accent5::after {
+                    content: var(--accent5-text);
+                }
+
+                .bg-accent6 {
+                    background-color: var(--accent6);
+                    color: var(--color0);
+                }
+                .bg-accent6::after {
+                    content: var(--accent6-text);
+                }
+
+                .bg-accent7 {
+                    background-color: var(--accent7);
+                    color: var(--color0);
+                }
+                .bg-accent7::after {
+                    content: var(--accent7-text);
+                }
+                </style>
+                <div class="wrapper">
+                    <div class="palette">
+                        <div class="bg-color0">
+                        <div class="index">0</div>
+                        <div class="name">bg</div>
+                        </div>
+                        <div class="bg-color1">
+                        <div class="index">1</div>
+                        <div class="name">red</div>
+                        </div>
+                        <div class="bg-color2">
+                        <div class="index">2</div>
+                        <div class="name">green</div>
+                        </div>
+                        <div class="bg-color3">
+                        <div class="index">3</div>
+                        <div class="name">yellow</div>
+                        </div>
+                        <div class="bg-color4">
+                        <div class="index">4</div>
+                        <div class="name">blue</div>
+                        </div>
+                        <div class="bg-color5">
+                        <div class="index">5</div>
+                        <div class="name">purple</div>
+                        </div>
+                        <div class="bg-color6">
+                        <div class="index">6</div>
+                        <div class="name">aqua</div>
+                        </div>
+                        <div class="bg-color7">
+                        <div class="index">7</div>
+                        <div class="name">gray</div>
+                        </div>
+                        <div class="bg-accent0">
+                        <div class="index">8</div>
+                        <div class="name">gray</div>
+                        </div>
+                        <div class="bg-accent1">
+                        <div class="index">9</div>
+                        <div class="name">red</div>
+                        </div>
+                        <div class="bg-accent2">
+                        <div class="index">10</div>
+                        <div class="name">green</div>
+                        </div>
+                        <div class="bg-accent3">
+                        <div class="index">11</div>
+                        <div class="name">yellow</div>
+                        </div>
+                        <div class="bg-accent4">
+                        <div class="index">12</div>
+                        <div class="name">blue</div>
+                        </div>
+                        <div class="bg-accent5">
+                        <div class="index">13</div>
+                        <div class="name">purple</div>
+                        </div>
+                        <div class="bg-accent6">
+                        <div class="index">14</div>
+                        <div class="name">aqua</div>
+                        </div>
+                        <div class="bg-accent7">
+                        <div class="index">15</div>
+                        <div class="name">fg</div>
+                        </div>
+                    </div>
+                </div>
+		</div>
+	</foreignObject>
+</svg>
