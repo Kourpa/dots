@@ -13,5 +13,24 @@ fi
 
 originalDir=$PWD
 cd $path
-nvim $path/$year/$month/$name 
+
+file=$year/$month/$name
+
+nvim $file 
+
+cl="# Changelog"
+if ! grep -Fxq "$cl" $file
+then
+    echo "" >> $file
+    echo "" >> $file
+    echo "" >> $file
+    echo "$cl" >> $file
+fi
+
+git diff -U0 --no-prefix -- ":!$file" | grep '^+' | sed -r 's/\+\-/  \-/g' | sed -r 's/\+\+\+/\-/g' >> $file
+
+
+git add .
+git commit -m "updating notes"
+
 cd $originalDir
