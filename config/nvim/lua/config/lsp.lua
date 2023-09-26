@@ -47,12 +47,12 @@ if ok then
         -- Set autocommands conditional on server_capabilities
         if client.server_capabilities.document_highlight then
             vim.api.nvim_exec([[
-        augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-        ]]   , false)
+              augroup lsp_document_highlight
+              autocmd! * <buffer>
+              autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+              autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+              augroup END
+              ]], false)
         end
     end
 
@@ -121,32 +121,50 @@ if ok then
     require("mason").setup {}
     local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+    local nvim_lsp = require 'lspconfig'
 
     local null_ls = require("null-ls")
-    null_ls.setup({
+    null_ls.setup {
         sources = {
             null_ls.builtins.diagnostics.eslint,
             null_ls.builtins.code_actions.eslint,
-            null_ls.builtins.formatting.prettier
+            null_ls.builtins.formatting.prettier_eslint
         },
-        on_attach = on_attach
-    })
-
-    local nvim_lsp = require 'lspconfig'
-    nvim_lsp.tsserver.setup { on_attach = function(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-        on_attach(client, bufnr)
-    end, capabilities = capabilities }
-
-    nvim_lsp.gopls.setup { on_attach = on_attach, capabilities = capabilities }
-    nvim_lsp.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
-    nvim_lsp.sumneko_lua.setup { on_attach = on_attach, capabilities = capabilities }
-
-    nvim_lsp.jdtls.setup {
         on_attach = on_attach,
         capabilities = capabilities,
+    }
+
+    nvim_lsp.tsserver.setup {
+        on_attach = function(client, bufnr)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+            on_attach(client, bufnr)
+        end,
+        capabilities = capabilities,
+    }
+
+    nvim_lsp.bashls.setup { on_attach = on_attach, capabilities = capabilities }
+    nvim_lsp.gopls.setup { on_attach = on_attach, capabilities = capabilities }
+    nvim_lsp.pylsp.setup { on_attach = on_attach, capabilities = capabilities }
+    nvim_lsp.lua_ls.setup { on_attach = on_attach, capabilities = capabilities }
+
+    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+    local workspace_dir = '/Users/mlemus/.cache/jdtls/workspace/' .. project_name
+    nvim_lsp.jdtls.setup {
+        on_attach = function(client, bufnr)
+            client.server_capabilities.documentFormattingProvider = false
+            on_attach(client, bufnr)
+        end,
+        capabilities = capabilities,
         root_dir = nvim_lsp.util.root_pattern(".git", "pom.xml"),
+        cmd = {
+            "jdtls",
+            "-configuration",
+            "/Users/mlemus/.cache/jdtls/config",
+            "-data",
+            workspace_dir,
+            "--jvm-arg=-javaagent:/Users/mlemus/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+        }
     }
 
     nvim_lsp.svelte.setup { on_attach = function(client, bufnr)
@@ -177,14 +195,14 @@ vim.diagnostic.config({
 local _border = "single"
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover, {
-    border = _border
-}
+        border = _border
+    }
 )
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help, {
-    border = _border
-}
+        border = _border
+    }
 )
 
 vim.diagnostic.config {

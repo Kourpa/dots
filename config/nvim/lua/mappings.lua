@@ -1,6 +1,5 @@
 local map = vim.api.nvim_set_keymap
 
-
 options = { noremap = true }
 
 map('n', '<space>p', '', {
@@ -21,7 +20,6 @@ map('n', '<space>[', ':cprev<CR>', options)
 map('n', '<space>]', ':cnext<CR>', options)
 
 map('n', '<space>e', ':Ex <bar> :sil! /<C-R>=expand("%:t")<CR><CR>', options)
---map('n', '<space>e', ':NvimTreeToggle<CR>', options)
 map('n', '<space>v', ':Vex! <bar> :sil! /<C-R>=expand("%:t")<CR><CR>', options)
 map('n', '<space>c', ':Gitsigns preview_hunk<CR>', options)
 map('n', '<space>u', ':Gitsigns reset_hunk<CR>', options)
