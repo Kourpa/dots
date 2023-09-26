@@ -42,7 +42,7 @@ vim.cmd [[
         autocmd QuickFixCmdPost cgetexpr cwindow
         autocmd QuickFixCmdPost lgetexpr lwindow
     augroup END
-    
+
 ]]
 
 buffer.undofile = true
@@ -53,4 +53,3 @@ window.number = true
 window.cursorline = true
 
 vim.cmd('filetype plugin indent on')
-
