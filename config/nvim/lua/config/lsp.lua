@@ -15,11 +15,11 @@ if ok then
         buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
         buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
         --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-        buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+        buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+        buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
         buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
         buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-        buf_set_keymap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         buf_set_keymap('n', '<space><space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
         --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
@@ -28,14 +28,14 @@ if ok then
         buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
         vim.cmd("command! LspFormatting lua vim.lsp.buf.format()")
-        if client.server_capabilities.documentFormattingProvider then
-            vim.api.nvim_exec([[
-                augroup LspAutocommands
-                autocmd! * <buffer>
-                autocmd BufWritePre <buffer> LspFormatting
-                augroup END
-            ]], true)
-        end
+        --if client.server_capabilities.documentFormattingProvider then
+            --vim.api.nvim_exec([[
+                --augroup LspAutocommands
+                --autocmd! * <buffer>
+                --autocmd BufWritePost <buffer> FormatFallback
+                --augroup END
+            --]], true)
+        --end
 
         -- Set some keybinds conditional on server capabilities
         if client.server_capabilities.documentFormattingProvider then
@@ -59,6 +59,7 @@ if ok then
     local ok, _ = pcall(require, 'cmp')
     if ok then
         local has_words_before = function()
+            unpack = unpack or table.unpack
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
             return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
@@ -68,11 +69,13 @@ if ok then
         end
 
         local cmp = require 'cmp'
+        local luasnip = require("luasnip")
         -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
         cmp.setup {
             snippet = {
                 expand = function(args)
-                    vim.fn["vsnip#anonymous"](args.body)
+                    -- vim.fn["vsnip#anonymous"](args.body)
+                    require('luasnip').lsp_expand(args.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert({
@@ -83,20 +86,24 @@ if ok then
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
-                    elseif vim.fn["vsnip#available"](1) == 1 then
-                        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+                        -- that way you will only jump inside the snippet region
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
                     elseif has_words_before() then
                         cmp.complete()
                     else
-                        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                        fallback()
                     end
                 end, { "i", "s" }),
 
-                ["<S-Tab>"] = cmp.mapping(function()
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
-                    elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-                        feedkey("<Plug>(vsnip-jump-prev)", "")
+                    elseif luasnip.jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
                     end
                 end, { "i", "s" }),
             }),
@@ -110,8 +117,9 @@ if ok then
             incomplete_delay = 400,
             allow_prefix_unmatch = false,
             sources = cmp.config.sources({
+                { name = 'luasnip' },
                 { name = 'nvim_lsp' },
-                { name = 'vsnip' },
+                --{ name = 'vsnip' },
                 { name = 'buffer' },
                 { name = 'path' },
             }),
@@ -123,21 +131,8 @@ if ok then
 
     local nvim_lsp = require 'lspconfig'
 
-    local null_ls = require("null-ls")
-    null_ls.setup {
-        sources = {
-            null_ls.builtins.diagnostics.eslint,
-            null_ls.builtins.code_actions.eslint,
-            null_ls.builtins.formatting.prettier_eslint
-        },
-        on_attach = on_attach,
-        capabilities = capabilities,
-    }
-
     nvim_lsp.tsserver.setup {
         on_attach = function(client, bufnr)
-            client.server_capabilities.documentFormattingProvider = false
-            client.server_capabilities.documentRangeFormattingProvider = false
             on_attach(client, bufnr)
         end,
         capabilities = capabilities,
@@ -178,6 +173,10 @@ if ok then
     nvim_lsp.graphql.setup { on_attach = function(client, bufnr)
         on_attach(client, bufnr)
     end, capabilities = capabilities }
+
+    nvim_lsp.marksman.setup {}
+    nvim_lsp.cssls.setup {}
+    nvim_lsp.zls.setup {}
 end
 
 -- borders!

@@ -4,8 +4,15 @@ if ok then
     autopair.setup {}
 end
 
-local ok, _ = pcall(require, 'nvim-ts-autotag')
-if ok then
-    local tagpair = require('nvim-ts-autotag')
-    tagpair.setup {}
-end
+-- local ok, _ = pcall(require, 'nvim-ts-autotag')
+-- if ok then
+--     local tagpair = require('nvim-ts-autotag')
+--     tagpair.setup {
+--         autotag = {
+--             enable = true,
+--             enable_rename = true,
+--             enable_close = true,
+--             enable_close_on_slash = false,
+--         }
+--     }
+-- end

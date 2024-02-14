@@ -4,4 +4,5 @@ vim.cmd [[
     set tabstop=2
     set shiftwidth=2
     let g:test#javascript#runner = 'jest'
+    let g:test#javascriptreact#runner = 'jest'
 ]]
