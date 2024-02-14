@@ -17,9 +17,18 @@ require("lazy").setup({
     'hrsh7th/nvim-cmp',
 
     'hrsh7th/cmp-vsnip',
-    'hrsh7th/vim-vsnip',
 
-    'jose-elias-alvarez/null-ls.nvim',
+    {
+        'L3MON4D3/LuaSnip',
+        build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+    },
+    'saadparwaiz1/cmp_luasnip',
+
+    -- 'hrsh7th/vim-vsnip',
+    -- 'hrsh7th/vim-vsnip-integ',
+
+    'stevearc/conform.nvim',
 
     -- test
     'vim-test/vim-test',
@@ -42,6 +51,23 @@ require("lazy").setup({
     'christoomey/vim-tmux-navigator',
 
     -- theme
-    'sam4llis/nvim-tundra',
-    'feline-nvim/feline.nvim',
+    -- 'sam4llis/nvim-tundra',
+    {
+        'Everblush/nvim',
+        as = 'everbrush',
+        config = function()
+            vim.cmd('colorscheme everblush')
+        end
+    },
+
+    -- line
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
+
+    -- markdown
+    'ellisonleao/glow.nvim',
+
+    'brenoprata10/nvim-highlight-colors'
 })
