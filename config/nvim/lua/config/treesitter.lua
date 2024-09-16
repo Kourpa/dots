@@ -1,10 +1,6 @@
 local ok, _ = pcall(require, 'nvim-treesitter.configs')
 if ok then
     require 'nvim-treesitter.configs'.setup {
-        autotag = {
-            enable = true,
-            enable_close_on_slash = false,
-        },
         ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
         ignore_install = { "haskell" },
         highlight = {
@@ -22,7 +18,7 @@ if ok then
         },
 
         indent = {
-            enable = true
+            enable = false
         },
 
         rainbow = {

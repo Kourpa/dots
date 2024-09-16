@@ -12,6 +12,7 @@ global.mouse = 'a'
 global.clipboard = 'unnamedplus'
 global.hidden = true
 global.diffopt = 'vertical,filler,context:3,indent-heuristic,algorithm:patience,internal'
+global.relativenumber = true
 
 buffer.syntax = 'enable'
 vim.cmd [[

@@ -15,7 +15,7 @@ if ok then
                 '--with-filename',
                 '--line-number',
                 '--column',
-                '--smart-case'
+                '--ignore-case'
             },
             prompt_prefix = "> ",
             selection_caret = "> ",

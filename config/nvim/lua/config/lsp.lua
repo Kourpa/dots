@@ -21,6 +21,7 @@ if ok then
         buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
         buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         buf_set_keymap('n', '<space><space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        buf_set_keymap('v', '<space><space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
         --buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
         buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -29,12 +30,12 @@ if ok then
 
         vim.cmd("command! LspFormatting lua vim.lsp.buf.format()")
         --if client.server_capabilities.documentFormattingProvider then
-            --vim.api.nvim_exec([[
-                --augroup LspAutocommands
-                --autocmd! * <buffer>
-                --autocmd BufWritePost <buffer> FormatFallback
-                --augroup END
-            --]], true)
+        --vim.api.nvim_exec([[
+        --augroup LspAutocommands
+        --autocmd! * <buffer>
+        --autocmd BufWritePost <buffer> FormatFallback
+        --augroup END
+        --]], true)
         --end
 
         -- Set some keybinds conditional on server capabilities
@@ -117,6 +118,7 @@ if ok then
             incomplete_delay = 400,
             allow_prefix_unmatch = false,
             sources = cmp.config.sources({
+                --{ name = 'copilot' },
                 { name = 'luasnip' },
                 { name = 'nvim_lsp' },
                 --{ name = 'vsnip' },

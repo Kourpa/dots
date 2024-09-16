@@ -8,14 +8,13 @@ require("lazy").setup({
     'williamboman/mason-lspconfig.nvim',
 
     'nvim-treesitter/nvim-treesitter',
-    'nvim-treesitter/nvim-treesitter-context',
+    -- 'nvim-treesitter/nvim-treesitter-context',
 
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/nvim-cmp',
-
     'hrsh7th/cmp-vsnip',
 
     {
@@ -37,11 +36,18 @@ require("lazy").setup({
     'tpope/vim-surround',
     'windwp/nvim-autopairs',
     'windwp/nvim-ts-autotag',
+    'tpope/vim-abolish',
 
     -- telescope
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
 
     -- git stuff
     'tpope/vim-fugitive',
@@ -52,11 +58,19 @@ require("lazy").setup({
 
     -- theme
     -- 'sam4llis/nvim-tundra',
+    -- {
+    --    'Everblush/nvim',
+    --    as = 'everbrush',
+    --    config = function()
+    --        vim.cmd('colorscheme everblush')
+    --    end
+    --},
     {
-        'Everblush/nvim',
-        as = 'everbrush',
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
         config = function()
-            vim.cmd('colorscheme everblush')
+            vim.cmd('colorscheme catppuccin')
         end
     },
 
@@ -69,5 +83,24 @@ require("lazy").setup({
     -- markdown
     'ellisonleao/glow.nvim',
 
-    'brenoprata10/nvim-highlight-colors'
+    'brenoprata10/nvim-highlight-colors',
+
+    --{
+    --"github/copilot.vim"
+    --}
+    ---code lens
+    --    {
+    --        "zbirenbaum/copilot.lua",
+    --        cmd = "Copilot",
+    --        event = "InsertEnter",
+    --        config = function()
+    --            require("copilot").setup({})
+    --        end,
+    --    },
+    --    {
+    --        "zbirenbaum/copilot-cmp",
+    --        config = function()
+    --            require("copilot_cmp").setup()
+    --        end
+    --    }
 })

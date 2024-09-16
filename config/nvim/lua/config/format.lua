@@ -7,6 +7,7 @@ if ok then
             javascriptreact = { 'prettierd', 'eslint_d' },
             typescript = { 'prettierd', 'eslint_d' },
             typescriptreact = { 'prettierd', 'eslint_d' },
+            java = { 'google-java-format' },
             css = { 'prettierd ' },
             html = { 'prettierd ' },
             json = { 'prettierd ' },
@@ -16,8 +17,13 @@ if ok then
             async = false,
             timeout = 500,
             lsp_fallback = true,
-        }
+        },
     })
+
+    print(conform.formatters['google-java-format'])
+    conform.formatters['google-java-format'] = {
+        prepend_args = { '--aosp' }
+    }
 end
 
 -- default to lsp LspFormatting
