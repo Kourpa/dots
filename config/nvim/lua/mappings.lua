@@ -17,19 +17,23 @@ map('n', '<space>fh', ':Telescope help_tags<CR>', options)
 map('n', '<space>t', ':TestNearest<CR>', options)
 map('n', '<space>T', ':TestFile<CR>', options)
 
-map('n', '<space>[', ':cprev<CR>', options)
-map('n', '<space>]', ':cnext<CR>', options)
+map('n', '<space>k', ':cprev<CR>', options)
+map('n', '<space>j', ':cnext<CR>', options)
 
 map('n', '<space>e', ':Oil <CR>', options)
+-- map('n', '<space>e', ':Fyler <CR>', options)
 map('n', '<space>v', ':vsplit<CR>', options)
--- map('n', '<space>e', ':Ex <bar> :sil! /^<C-R>=expand("%:t")<CR><CR>', options)
--- map('n', '<space>v', ':Vex! <bar> :sil! /^<C-R>=expand("%:t")<CR><CR>', options)
+
+-- map('n', '<space>e', ':Ex <bar> :sil! /<C-R>=empty(expand("%")) ? "" : "^" . expand("%:t")<CR><CR>', options)
+-- map('n', '<space>v', ':Vex! <bar> :sil! /<C-R>=empty(expand("%")) ? "" : "^" . expand("%:t")<CR><CR>', options)
+
+-- map('n', '<space>e', ':lua Snacks.explorer.reveal() <CR>', options)
+-- map('n', '<space>v', ':vsplit<CR>', options)
 
 map('n', '<space>c', ':Gitsigns preview_hunk<CR>', options)
 map('n', '<space>u', ':Gitsigns reset_hunk<CR>', options)
 map('n', '[c', ':Gitsigns prev_hunk<CR>', options)
 map('n', ']c', ':Gitsigns next_hunk<CR>', options)
-map('n', '<space>tt', ':lua require("telescope.builtin").grep_string({search = "- [ ]"})<CR>', options)
 
 map('v', 'K', ":m '<-2<CR>gv=gv", {})
 map('v', 'J', ":m '>+1<CR>gv=gv", {})

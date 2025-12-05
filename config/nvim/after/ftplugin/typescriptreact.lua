@@ -1,7 +1,7 @@
 -- Define a function to escape special characters in paths
 local function escape_path(path)
     -- Escape special characters
-    return string.gsub(path, '[%(%)%[%]%{%}%/%\\%*%+%?%$%^|%-]', '\\%1')
+    return string.gsub(path, '[%(%)%[%]%{%}%/%\\%*%+%?%$%^|%-]', '%1')
 end
 
 -- Define the custom transformation function for commands

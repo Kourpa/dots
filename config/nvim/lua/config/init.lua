@@ -1,6 +1,7 @@
 require('config/autopairs')
 require('config/feline')
 require('config/format')
+require('config/fyler')
 require('config/git')
 require('config/glow')
 require('config/lsp')
